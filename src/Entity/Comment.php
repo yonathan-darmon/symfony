@@ -2,28 +2,25 @@
 
 namespace App\Entity;
 
-use App\Repository\ArticlesRepository;
+use App\Repository\CommentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ArticlesRepository::class)]
-class Articles
+#[ORM\Entity(repositoryClass: CommentRepository::class)]
+class Comment
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $titre = null;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $content = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $contenu = null;
-
-    #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
@@ -32,26 +29,14 @@ class Articles
         return $this->id;
     }
 
-    public function getTitre(): ?string
+    public function getContent(): ?string
     {
-        return $this->titre;
+        return $this->content;
     }
 
-    public function setTitre(string $titre): self
+    public function setContent(string $content): self
     {
-        $this->titre = $titre;
-
-        return $this;
-    }
-
-    public function getContenu(): ?string
-    {
-        return $this->contenu;
-    }
-
-    public function setContenu(string $contenu): self
-    {
-        $this->contenu = $contenu;
+        $this->content = $content;
 
         return $this;
     }
