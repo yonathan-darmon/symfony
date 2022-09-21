@@ -58,6 +58,7 @@ class Articles
     {
         return $this->contenu;
     }
+    
 
     public function setContenu(string $contenu): self
     {

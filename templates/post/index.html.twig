@@ -2,12 +2,24 @@
 
 {% block title %}Hello PostController!
 {% endblock %}
-
 {% block body %}
 
 	<div>
-		<h1>
+		<h1 class="text-center">
 			Page Articles</h1>
-
+		<div class="d-inline-flex p-2 w-25">
+			{% for article in articles %}
+				<div>
+					<h3>{{article.titre}}</h3>
+					<p>
+						<strong>{{article.user.login}}</strong>
+					</p>
+					<p>
+						<strong>{{article.createdat|date('d-m-Y')}}</strong>
+					</p>
+					<p>{{article.contenu}}</p>
+				</div>
+			{% endfor %}
+		</div>
 	</div>
 {% endblock %}
