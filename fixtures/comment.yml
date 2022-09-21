@@ -1,0 +1,6 @@
+App\Entity\Comment:
+    comment_{1..150}:
+        content: <paragraph(2)>
+        created_at: <dateTime()>
+        user: '@user*'
+        articles: '@articles*'
